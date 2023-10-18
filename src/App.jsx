@@ -19,7 +19,7 @@ function App() {
   const [importANDparse, setImportANDparse] = useState(false)
   const [findJournals, setFindJournals] = useState(localStorage.getItem('journals') ? JSON.parse(localStorage.getItem('journals')) : '')
   const [heightBox, setHeightBox] =useState('0px')
-  const [ boxId, setBoxId] = useState(localStorage.getItem('box_id') ? localStorage.getItem('box_id') : '')
+  const [boxId, setBoxId] = useState(localStorage.getItem('box_id') ? localStorage.getItem('box_id') : '')
 
   return <Context.Provider value ={{
     api: api, 

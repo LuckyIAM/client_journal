@@ -4,13 +4,16 @@ import Banner from "../components/Banner";
 import BoxInfo from "../components/BoxInfo"
 import Footer from "../components/Footer";
 
+
 const BoxInformation = () => {
 
     return<>
     <Menu/>
     <Banner/>
     <BoxInfo/>
-    <Footer/>
+    <div className="toppadiing" style={{position: 'relative', top: '250px'}}>
+        <Footer/>
+    </div>
     </>
 
 }

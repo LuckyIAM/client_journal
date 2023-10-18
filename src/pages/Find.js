@@ -1,12 +1,11 @@
-import React,{useContext} from "react";
-import {Context} from '../App'
+import React from "react";
 import Menu from "../components/Menu";
 import Banner from "../components/Banner";
 import FindContainer from "../components/FindContainer";
 import Footer from "../components/Footer";
 
 const Find = () => {
-    const {findJournals} =useContext(Context)
+
     return<>
     <Menu/>
     <Banner/>

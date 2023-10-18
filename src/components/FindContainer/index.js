@@ -9,9 +9,9 @@ const FindContainer = () => {
     const [yearORnumber, setYearORnumber] = useState('')
     const [findElem, setFindElem] = useState([])
     const [findJousranl, setFindJournal] = useState([])
-    const {api, importANDparse, setImportANDparse, findJournals, setFindJournals} = useContext(Context)
+    const {api, importANDparse, setImportANDparse, findJournals, setFindJournals, token} = useContext(Context)
  
-    setFindJournals(findJousranl !== '0px' ? `${(400 + 50) * Math.ceil(findJousranl.length/3) + 100}px` :  '0px' )
+    setFindJournals(findJousranl !== '0px' ? `${((400 + 50) * Math.ceil(findJousranl.length/3)) + 400}px` :  '0px' )
     console.log(findJournals);
     const numJournal = {
         height: findJournals
@@ -21,22 +21,24 @@ const FindContainer = () => {
         setImportANDparse(true)
         console.log('start', importANDparse);
         console.log(journalName, yearORnumber);
+        console.log(token);
         api.find({'data_search': journalName})
             .then(res => res.json())
-            .then(data => {
+            .then(dt => {
+                let data = dt
                 localStorage.setItem('journals', JSON.stringify(data))
                 let d = localStorage.getItem('journals')
-                setFindElem(JSON.parse(d))
-                console.log('findElem', findElem);
+                setFindElem(data)
                 let arr = []
-                let f = findElem ? 
-                findElem.map((elem) => {
+                let f = data ? 
+                data.map((elem) => {
                     if(elem.name_journal.includes(`${yearORnumber}`)){
                         arr.push(elem)
                     }
                     }) : {}
                 console.log(arr);   
-                setFindJournal([...arr])                  
+                localStorage.setItem('find_journal', JSON.stringify(arr))
+                setFindJournal(JSON.parse(localStorage.getItem('find_journal')))                  
                 console.log(findJousranl);
                 setImportANDparse(false)
                 setJournalName('')
