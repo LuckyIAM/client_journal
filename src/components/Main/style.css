@@ -1,0 +1,28 @@
+.main_container{
+    margin-top: 350px;
+    color: #332e29;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.main_container h2{
+    font-size: 60px;
+    text-transform: uppercase;
+    font-weight: 800;
+    margin: 30px;
+}
+.cards_container{
+    display: flex;
+    justify-content: space-between;
+}
+
+@media(max-width: 1550px){
+    .main_container{
+        margin-top: 280px;
+    }
+    .main_container h2{
+        font-size: 45px;
+        letter-spacing: 1px;
+    }
+}

@@ -1,0 +1,24 @@
+.footer__container{
+    margin-top: 70px;
+    width: 100%;
+    height: 190px;
+    background: #332e29;
+    color: #fff;
+    padding: 40px;
+}
+.box2__about{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+}
+.about{
+    font-style: italic;
+    font-size: 20px;
+}
+.made{
+    font-size: 11px;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    margin: 10px;
+}
