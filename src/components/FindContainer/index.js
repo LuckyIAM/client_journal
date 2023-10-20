@@ -6,13 +6,13 @@ import './style.css'
 
 const FindContainer = () => {
     const [journalName, setJournalName] = useState('')
-    const [yearORnumber, setYearORnumber] = useState('')
-    const [findElem, setFindElem] = useState([])
-    const [findJousranl, setFindJournal] = useState([])
-    const {api, importANDparse, setImportANDparse, findJournals, setFindJournals, token} = useContext(Context)
+    const [year, setYear] = useState('')
+    const [numberEdition, setNumberEdition] = useState('')
+    
+    const {api, importANDparse, setImportANDparse, findJournals, setFindJournals, token, findJousranl, setFindJournal} = useContext(Context)
  
     setFindJournals(findJousranl !== '0px' ? `${((400 + 50) * Math.ceil(findJousranl.length/3)) + 400}px` :  '0px' )
-    console.log(findJournals);
+
     const numJournal = {
         height: findJournals
     }
@@ -20,28 +20,58 @@ const FindContainer = () => {
         e.preventDefault()
         setImportANDparse(true)
         console.log('start', importANDparse);
-        console.log(journalName, yearORnumber);
+        console.log(journalName, year);
         console.log(token);
+        localStorage.setItem('name_journal', journalName)
         api.find({'data_search': journalName})
             .then(res => res.json())
             .then(dt => {
                 let data = dt
-                localStorage.setItem('journals', JSON.stringify(data))
-                let d = localStorage.getItem('journals')
-                setFindElem(data)
                 let arr = []
-                let f = data ? 
-                data.map((elem) => {
-                    if(elem.name_journal.includes(`${yearORnumber}`)){
-                        arr.push(elem)
-                    }
-                    }) : {}
-                console.log(arr);   
-                localStorage.setItem('find_journal', JSON.stringify(arr))
+                let res = []
+                if(journalName && !year && !numberEdition){
+                    localStorage.setItem('find_journal', JSON.stringify(data))
+                }
+
+                if(journalName && year && !numberEdition){
+                    let f = data ? 
+                    data.map((elem) => {
+                        if(elem.name_journal.includes(year)){
+                            
+                            arr.push(elem)
+                        }
+                        }) : {}
+                    console.log(arr);  
+                    localStorage.setItem('find_journal', JSON.stringify(arr))
+                    setFindJournal(arr)
+                }
+                console.log(numberEdition);
+                if(journalName && year && numberEdition){
+                    console.log('true');
+                    localStorage.setItem('find_journal', JSON.stringify(data))
+                    let f = data ? 
+                    data.map((elem) => {
+                        if(elem.name_journal.includes(year)){
+                            arr.push(elem)
+                        }
+                        }) : {}
+                    let endParse = arr ? arr.map(e => {
+                        console.log(e.name_journal);
+                        if(e.name_journal.includes(numberEdition)){
+                            res.push(e)
+                        } 
+                    }):[]
+                    console.log(res);
+                    localStorage.setItem('find_journal', JSON.stringify(res))
+                    setFindJournal(res)
+                }
+                
                 setFindJournal(JSON.parse(localStorage.getItem('find_journal')))                  
                 console.log(findJousranl);
                 setImportANDparse(false)
                 setJournalName('')
+                setYear('')
+                setNumberEdition('')
             })
         
     }
@@ -62,16 +92,25 @@ const FindContainer = () => {
                 <div className="colum">
                     <label htmlFor="flag__name">Имя журнала</label>
                     <input type="text"
+                    id="flag__name"
                     placeholder="Современная архитектура"
                     value={journalName}
                     onChange={e => {
                         setJournalName(e.target.value)}}/>
-                    <label htmlFor="flag__name">Введите год или номер</label>
+                    <label htmlFor="year">Год</label>
                     <input type="text"
-                    placeholder="Современная архитектура"
-                    value={yearORnumber}
+                    id="year"
+                    placeholder="1999"
+                    value={year}
                     onChange={e => {
-                        setYearORnumber(e.target.value)}}/>
+                        setYear(e.target.value)}}/>
+                    <label htmlFor="edition">Издание</label>
+                    <input type="text"
+                    id="edition"
+                    placeholder="060518"
+                    value={numberEdition}
+                    onChange={e => {
+                        setNumberEdition(e.target.value)}}/>
                     <button className="button_banner" type='submit' onClick={sendToServer}>Поиск</button>
                 </div>
                 

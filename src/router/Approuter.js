@@ -12,7 +12,7 @@ const AppRouter = () =>{
             <Route path='/' element={<Home/>}/>
             <Route path='/upload' element={<ImportFile/>}/>
             <Route path='/find' element={<Find/>}/>
-            <Route path='box/:id' element={<BoxInformation/>}/>
+            <Route path='/box/:id' element={<BoxInformation/>}/>
         </Routes>
     )
 }

@@ -5,25 +5,27 @@ import './style.css'
 
 const JournalCard = ({box_num, quantity, name_journal, id}) => {
     const goTo = useNavigate()
-    const {api, boxId, setBoxId} = useContext(Context)
+    const {api, boxId, setBoxId, setInfoBox} = useContext(Context)
 
     const getElement = e => {
         e.preventDefault()
-        console.log(e.currentTarget); 
-        localStorage.setItem('box_id', id)
-        setBoxId(localStorage.getItem('box_id'))
-        api.findOne(id)
+        console.log(e.currentTarget.dataset.id); 
+        localStorage.setItem('box_id', e.currentTarget.dataset.id)
+        setBoxId(e.currentTarget.dataset.id)
+        api.findOne(e.currentTarget.dataset.id)
             .then(res => res.json())
             .then(data => {
                 console.log(data);
                 localStorage.setItem('info_box', JSON.stringify(data))
+                setInfoBox(JSON.parse(localStorage.getItem('info_box')))
             })
-        goTo(`/box/${id}`)
-
+        goTo(`/box/${e.currentTarget.dataset.id}`)
     }
 
+
+
     return<>
-    <div className="jornal_container" onClick={getElement}>
+    <div className="jornal_container" data-id = {id} onMouseDown={getElement} >
         <div className="journal_box">
             <div className="box_grid">
                 <div className="num-box">
