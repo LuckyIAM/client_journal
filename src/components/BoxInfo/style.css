@@ -33,6 +33,7 @@
     border: 2px solid #fff;
 }
 .biger{
-    font-size: 50px;
-    color: red;
+    font-size: 30px;
+    color: rgb(3, 78, 3);
+    text-decoration: underline;
 }

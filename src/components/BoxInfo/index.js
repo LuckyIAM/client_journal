@@ -1,29 +1,19 @@
 import React, {useContext, useEffect, useState} from "react";
+// import { useNavigate } from "react-router-dom";
 import {Context} from "../../App"
 import './style.css'
 
 const BoxInfo = () =>{
-    const [text, setText] = useState('')
-    const {infoBox, setInfoBox} = useContext(Context)
-    
+    const {infoBox, text, setText, boxId} = useContext(Context)
+    // const redirect = useNavigate()
     useEffect(() => {
-        console.log(infoBox);
-        if((infoBox.name_journal).toLocaleLowerCase().includes((localStorage.getItem('name_journal')).toLocaleLowerCase())){
-            let startIndex = (infoBox.name_journal).toLocaleLowerCase().indexOf((localStorage.getItem('name_journal')).toLocaleLowerCase())
-            let lastIndex = startIndex + localStorage.getItem('name_journal').length
-            setText(`${infoBox.name_journal.slice(0, startIndex)}<u>${infoBox.name_journal.slice(startIndex , lastIndex)}</u>${infoBox.name_journal.slice(lastIndex)}`)
-            console.log(document.querySelectorAll('.choise_data')[2])
-            console.log('text', text);
-            document.querySelectorAll('.choise_data')[2].innerHTML = text
-            console.log(localStorage.getItem('name_journal'), startIndex, lastIndex);
-        }
-        
-    }, [text])
-
+        // redirect(`/box/${boxId}`)
+        setText(localStorage.getItem('info_box'))
+        const changeText = document.querySelector('.height1')
+        console.log(changeText);
+        changeText.innerHTML = text
+    }, [])
     
-
-    // наити и выделить жырным с поиощю ыдшсу быстрее
-
 return<>
 {infoBox && <div className="choice_box">
     <div className="chose_title">
@@ -40,7 +30,7 @@ return<>
         </tr>
         <tr>
             <th className="choise_text">Название журнала</th>
-            <td className="choise_data height1">qwerty</td>
+            <td className="choise_data height1"></td>
         </tr>
         
     </table>

@@ -22,10 +22,12 @@ const Menu = () =>{
 
     const getOut = e =>{
         e.preventDefault()
-        localStorage.removeItem('token')
-        localStorage.removeItem('user')
-        localStorage.removeItem('role')
+        let applications = ['token', 'user', 'role', 'info_box', 'find_journal', 'box_id', 'year', 'name_journal', 'journals']
+        for(let i = 0; i < applications.length; i++){
+            localStorage.removeItem(applications[i])
+        }
         setToken('')
+       
     }
     const goFind = e => {
         e.preventDefault()

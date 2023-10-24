@@ -22,6 +22,9 @@ function App() {
   const [heightBox, setHeightBox] =useState('0px')
   const [boxId, setBoxId] = useState(localStorage.getItem('box_id') ? localStorage.getItem('box_id') : '')
   const [infoBox, setInfoBox] = useState(localStorage.getItem('info_box') ? JSON.parse(localStorage.getItem('info_box')) : {})
+  const [text, setText] = useState('')
+  const [ nameJournal, setNameJournal] =useState(localStorage.getItem('name_journal') ? localStorage.getItem('name_journal') : "")
+  const [year, setYear] = useState('')
   // const [reload, setReload] = useState(true)
 
   return <Context.Provider value ={{
@@ -51,6 +54,12 @@ function App() {
     setFindJournal: setFindJournal,
     infoBox: infoBox, 
     setInfoBox: setInfoBox,
+    text: text, 
+    setText: setText,
+    nameJournal: nameJournal, 
+    setNameJournal: setNameJournal,
+    year:year, 
+    setYear: setYear
     // reload: reload, 
     // setReload: setReload
 

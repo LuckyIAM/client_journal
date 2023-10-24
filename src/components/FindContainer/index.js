@@ -6,10 +6,8 @@ import './style.css'
 
 const FindContainer = () => {
     const [journalName, setJournalName] = useState('')
-    const [year, setYear] = useState('')
     const [numberEdition, setNumberEdition] = useState('')
-    
-    const {api, importANDparse, setImportANDparse, findJournals, setFindJournals, token, findJousranl, setFindJournal} = useContext(Context)
+    const {api, importANDparse, setImportANDparse, findJournals, setFindJournals, token, findJousranl, setFindJournal, setNameJournal, year, setYear} = useContext(Context)
  
     setFindJournals(findJousranl !== '0px' ? `${((400 + 50) * Math.ceil(findJousranl.length/3)) + 400}px` :  '0px' )
 
@@ -69,8 +67,9 @@ const FindContainer = () => {
                 setFindJournal(JSON.parse(localStorage.getItem('find_journal')))                  
                 console.log(findJousranl);
                 setImportANDparse(false)
+                setNameJournal(localStorage.getItem('name_journal'))
                 setJournalName('')
-                setYear('')
+                setYear(localStorage.setItem('year', year))
                 setNumberEdition('')
             })
         
@@ -127,7 +126,7 @@ const FindContainer = () => {
                 id = {elem.id}
                 box_num={elem.num_box}
                 quantity = {elem.quantity}
-                name_journal = {elem.name_journal.length >= 100 ? elem.name_journal.slice(0, 20) + '...' : elem.name_journal}
+                name_journal = {elem.name_journal.length >= 20 ? elem.name_journal.slice(0, 20) + '...' : elem.name_journal}
                 />
                 )}
             </div>
