@@ -28,20 +28,20 @@ const Modal = ({isActive, changeActiv}) => {
                     localStorage.setItem('token', data.token)
                     localStorage.setItem('user', data.name)
                     localStorage.setItem('role', data.role)
-                    setToken(localStorage.getItem('token'))
+                    setToken(data.token)
                     setName(localStorage.getItem('user'))
                     setRoleSave(localStorage.getItem('role'))
                     setMail('')
                     setPsw('')
                     changeActiv(false)
                     warning.innerHTML = ''
+                    window.location.reload()
                 }else if (data.message){
                     warning.innerHTML = data.message
                 }
                     
             })
-        }
-        
+        } 
     }
     const handler2 = e => {
         e.preventDefault()
@@ -74,6 +74,7 @@ const Modal = ({isActive, changeActiv}) => {
         }else{
             warning.innerHTML = `Заполните все поля`
         }
+        window.location.reload()
     }
 
     const goOut = e => {

@@ -7,9 +7,9 @@ import './style.css'
 const FindContainer = () => {
     const [journalName, setJournalName] = useState('')
     const [numberEdition, setNumberEdition] = useState('')
-    const {api, importANDparse, setImportANDparse, findJournals, setFindJournals, token, findJousranl, setFindJournal, setNameJournal, year, setYear} = useContext(Context)
+    const {api, importANDparse, setImportANDparse, findJournals, setFindJournals, token, findJouranl, setFindJournal, setNameJournal, year, setYear} = useContext(Context)
  
-    setFindJournals(findJousranl !== '0px' ? `${((400 + 50) * Math.ceil(findJousranl.length/3)) + 400}px` :  '0px' )
+    setFindJournals(findJouranl !== '0px' ? `${((400 + 50) * Math.ceil(findJouranl.length/3)) + 400}px` :  '0px' )
 
     const numJournal = {
         height: findJournals
@@ -29,6 +29,7 @@ const FindContainer = () => {
                 let res = []
                 if(journalName && !year && !numberEdition){
                     localStorage.setItem('find_journal', JSON.stringify(data))
+                    setFindJournal(data)
                 }
 
                 if(journalName && year && !numberEdition){
@@ -65,7 +66,7 @@ const FindContainer = () => {
                 }
                 
                 setFindJournal(JSON.parse(localStorage.getItem('find_journal')))                  
-                console.log(findJousranl);
+                console.log(findJouranl);
                 setImportANDparse(false)
                 setNameJournal(localStorage.getItem('name_journal'))
                 setJournalName('')
@@ -117,11 +118,11 @@ const FindContainer = () => {
         <Loader flag={importANDparse}/>
         </div>
         </div>
-        <div className="bg_color">
-            <div className="num_journal" >Наидено {findJousranl.length} журналов с таким названием</div>
+        {findJouranl && <div className="bg_color">
+            <div className="num_journal" >Наидено {findJouranl.length} журналов с таким названием</div>
             <div className="centred">
             <div className="cards" style={numJournal}>
-                {findJousranl && findJousranl.map((elem,i) => <JournalCard
+                {findJouranl.map((elem,i) => <JournalCard
                 key={i}
                 id = {elem.id}
                 box_num={elem.num_box}
@@ -131,7 +132,7 @@ const FindContainer = () => {
                 )}
             </div>
         </div>
-        </div>
+        </div>}
     </main>
     </>
 }

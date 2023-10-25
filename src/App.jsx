@@ -18,14 +18,15 @@ function App() {
   const [inportORparse, setImportORparse] = useState('')
   const [importANDparse, setImportANDparse] = useState(false)
   const [findJournals, setFindJournals] = useState(localStorage.getItem('journals') ? JSON.parse(localStorage.getItem('journals')) : '')
-  const [findJousranl, setFindJournal] = useState(localStorage.getItem('find_journal') ? JSON.parse(localStorage.getItem('find_journal')) : [])
+  const [findJouranl, setFindJournal] = useState(localStorage.getItem('find_journal') ? JSON.parse(localStorage.getItem('find_journal')) : [])
   const [heightBox, setHeightBox] =useState('0px')
   const [boxId, setBoxId] = useState(localStorage.getItem('box_id') ? localStorage.getItem('box_id') : '')
-  const [infoBox, setInfoBox] = useState(localStorage.getItem('info_box') ? JSON.parse(localStorage.getItem('info_box')) : {})
+  const [infoBox, setInfoBox] = useState(JSON.parse(localStorage.getItem('info_box')) || {})
   const [text, setText] = useState('')
   const [ nameJournal, setNameJournal] =useState(localStorage.getItem('name_journal') ? localStorage.getItem('name_journal') : "")
   const [year, setYear] = useState('')
-  // const [reload, setReload] = useState(true)
+  const [showComponent, setShowComponent] = useState(false)
+ 
 
   return <Context.Provider value ={{
     api: api, 
@@ -50,7 +51,7 @@ function App() {
     setHeightBox: setHeightBox,
     boxId: boxId, 
     setBoxId: setBoxId,
-    findJousranl: findJousranl,
+    findJouranl: findJouranl,
     setFindJournal: setFindJournal,
     infoBox: infoBox, 
     setInfoBox: setInfoBox,
@@ -59,10 +60,9 @@ function App() {
     nameJournal: nameJournal, 
     setNameJournal: setNameJournal,
     year:year, 
-    setYear: setYear
-    // reload: reload, 
-    // setReload: setReload
-
+    setYear: setYear,
+    showComponent: showComponent, 
+    setShowComponent: setShowComponent
   }}>
     <BrowserRouter>
       <AppRouter/>

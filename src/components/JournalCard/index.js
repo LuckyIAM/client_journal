@@ -2,10 +2,11 @@ import React, {useContext, useEffect, useState} from "react";
 import { Context } from "../../App";
 import { useNavigate } from "react-router-dom";
 import './style.css'
+import BoxInfo from "../BoxInfo";
 
 const JournalCard = ({box_num, quantity, name_journal, id}) => {
     const goTo = useNavigate()
-    const {api, setBoxId, infoBox, setInfoBox, nameJournal, setNameJournal, text, setText, year, setYear} = useContext(Context)
+    const {api, setBoxId, infoBox, setInfoBox, nameJournal, year, setYear, setText, text} = useContext(Context)
   
     useEffect(() => {
         setInfoBox(JSON.parse(localStorage.getItem('info_box')))
@@ -26,7 +27,7 @@ const JournalCard = ({box_num, quantity, name_journal, id}) => {
                 let data = result
                 console.log('data', data);
                 localStorage.setItem('info_box', JSON.stringify(data))
-                setInfoBox(JSON.parse(localStorage.getItem('info_box')))
+                setInfoBox(data)
                 console.log(infoBox, '\n', nameJournal)
                 let reg = '' 
                 for(let i = 0; i < nameJournal.length; i++){
@@ -41,8 +42,7 @@ const JournalCard = ({box_num, quantity, name_journal, id}) => {
                     changeData = changeData.replace(regYear, `<span class="biger">${year}</span>`)
                 }
                 console.log(year, changeData);
-                setText(localStorage.setItem('info_box', JSON.stringify({changeData})))
-                console.log(text);
+                setText(changeData)
             })
         goTo(`/box/${e.currentTarget.dataset.id}`)
     }
