@@ -37,9 +37,14 @@ const JournalCard = ({box_num, quantity, name_journal, id}) => {
                 let changeData = ''
                 let regName = new RegExp(reg, 'g')
                 let regYear = new RegExp(year, "g")
-                changeData = data.name_journal.replace(regName, `<span class="biger">${nameJournal}</span>`)
+                if(nameJournal && changeData === ''){
+                    changeData = data.name_journal.replace(regName, `<span class="biger">${nameJournal}</span>`)
+                }
                 if(changeData && year){
                     changeData = changeData.replace(regYear, `<span class="biger">${year}</span>`)
+                }
+                if(changeData === '' && year){
+                    changeData = data.name_journal.replace(regYear, `<span class="biger">${year}</span>`)
                 }
                 console.log(year, changeData);
                 setText(changeData)

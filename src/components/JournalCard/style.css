@@ -44,3 +44,44 @@
     font-size: 20px;
 }
 
+@media (max-width: 1521px) { 
+    .jornal_container{
+        width: 280px;
+        height: 325px;
+    }
+    .box_icon{
+        width: 40px;
+        height: 40px;
+    }
+    .box_text, .quantity{
+        font-size: 30px;
+    }
+    
+ }
+
+ @media (max-width: 1099px) { 
+    .jornal_container{
+        width: 350px;
+        height: 400px;
+    }
+ }
+
+ @media (max-width: 871px) {
+    .jornal_container{
+        width: 280px;
+        height: 325px;
+    }
+}
+
+@media (max-width: 653px) {
+    .jornal_container{
+        width: 350px;
+        height: 400px;
+    }
+}
+@media (max-width: 485px) {
+    .jornal_container{
+        width: 280px;
+        height: 325px;
+    }
+}

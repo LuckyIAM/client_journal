@@ -10,17 +10,19 @@ const Banner = () =>{
         changePopupActiv(true)
     }
 
-
+    console.log(window.innerWidth);
 
     return<>
         <heder className='body_of_main'>
             <div className='banner_img'></div>
             <div className='title'>
-                <h1>Журналы</h1><br/>
+                {window.innerWidth >= 1099 ?<><h1>Журналы</h1><br/>
                 Российской <br/>
                 государственной <br/>
                 библиотеки искусств
-                <br/>
+                <br/></>: 
+                <h1>Журналы Российской государственной библиотеки искусств</h1>
+                }
                 <button className='button_banner' onClick={goToRegistration}>Войти</button>
             </div>
                 

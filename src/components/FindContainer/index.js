@@ -1,4 +1,4 @@
-import React, {useState, useContext} from "react";
+import React, {useState, useContext, useEffect} from "react";
 import { Context } from "../../App";
 import Loader from "../Loader/index";
 import JournalCard from "../JournalCard/index";
@@ -8,8 +8,18 @@ const FindContainer = () => {
     const [journalName, setJournalName] = useState('')
     const [numberEdition, setNumberEdition] = useState('')
     const {api, importANDparse, setImportANDparse, findJournals, setFindJournals, token, findJouranl, setFindJournal, setNameJournal, year, setYear} = useContext(Context)
- 
-    setFindJournals(findJouranl !== '0px' ? `${((400 + 50) * Math.ceil(findJouranl.length/3)) + 400}px` :  '0px' )
+    let quantity 
+    useEffect(() => {
+        if(window.innerWidth >= 1099){
+            quantity = 3
+        }else if(window.innerWidth < 1099 && window.innerWidth >= 805){
+            quantity = 2
+        }else if( window.innerWidth < 805){
+            quantity = 1
+        }
+    }, [])
+    
+    setFindJournals(findJouranl !== '0px' ? `${((400 + 50) * Math.ceil(findJouranl.length/quantity)) + 400}px` :  '0px' )
 
     const numJournal = {
         height: findJournals
@@ -21,7 +31,7 @@ const FindContainer = () => {
         console.log(journalName, year);
         console.log(token);
         localStorage.setItem('name_journal', journalName)
-        api.find({'data_search': journalName})
+        {api.find({'data_search': journalName, year: year})
             .then(res => res.json())
             .then(dt => {
                 let data = dt
@@ -64,6 +74,10 @@ const FindContainer = () => {
                     localStorage.setItem('find_journal', JSON.stringify(res))
                     setFindJournal(res)
                 }
+                if(!journalName && year && !numberEdition){
+                    localStorage.setItem('find_journal', JSON.stringify(data))
+                    setFindJournal(data)
+                }
                 
                 setFindJournal(JSON.parse(localStorage.getItem('find_journal')))                  
                 console.log(findJouranl);
@@ -73,6 +87,7 @@ const FindContainer = () => {
                 setYear(localStorage.setItem('year', year))
                 setNumberEdition('')
             })
+        }
         
     }
 

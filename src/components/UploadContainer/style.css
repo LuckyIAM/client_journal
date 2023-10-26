@@ -114,3 +114,20 @@ ul{
     margin-bottom: 50px;
     box-sizing: border-box;
 }
+
+@media (max-width: 1099px) { 
+ 
+    .title2__instruction{
+        font-size: 35px;
+        font-weight: 800;
+        text-align: center;
+        padding-top: 50px;
+    }
+
+ }
+
+ @media (max-width: 720px) {
+    ul{
+        line-height: 25px;
+    }
+}

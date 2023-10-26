@@ -26,3 +26,12 @@
         letter-spacing: 1px;
     }
 }
+@media (max-width: 905px) { 
+    .main_container{
+        margin-top: 400px;
+    }
+    .main_container h2{
+        font-size: 35px;
+        margin: 20px 5%;
+    }
+ }

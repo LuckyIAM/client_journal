@@ -25,14 +25,56 @@
 .cards{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 50px;
+    gap: 50px 130px;
 }
 
 .bg_color{
     background-color: #f4dfc5;
     position: relative;
     top: 300px;
+    padding: 0 5%;
 }
 .centred{
-    margin: 20px 15%;
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+
 }
+@media (max-width: 1521px) { 
+    .cards{
+        gap: 20px 75px;
+    }
+ }
+
+@media (max-width: 1099px) {
+    .num_journal{
+        text-align: center;
+        margin: 50px;
+        padding: 20px 0;
+        font-size: 37px;
+        font-weight: 700;
+        background-color: #f4dfc5;
+    }
+    .cards{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px 75px;
+    }
+}
+
+@media (max-width: 653px) {
+    .cards{
+        grid-template-columns: 1fr
+    }
+    .findf{
+        width: 90%;
+        padding: 0 15px;
+    }
+}
+
+@media (max-width: 485px) {
+    .container2{
+        height: 800px;
+    }
+}
+

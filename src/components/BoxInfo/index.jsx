@@ -1,7 +1,6 @@
 import React, {useContext, useEffect, useState} from "react";
 import {Context} from "../../App"
 import './style.css'
-import GetHTML from "./test";
 
 const BoxInfo = () =>{
     const {infoBox, text} = useContext(Context)
