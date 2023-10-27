@@ -1,4 +1,5 @@
-import React from 'react'
+import React, {useContext} from 'react'
+import {Context} from "../../App"
 import Card from '../Card/index'
 import './style.css'
 
@@ -21,9 +22,10 @@ const objData = [
 
 
 const Main = () => {
+    const {token} = useContext(Context)
 
     return<>
-    <main className='main_container'>
+    {token && <main className='main_container'>
         <h2>Работа с  журналами</h2>
         <div className='cards_container'>
             {objData.map( (elem, i) => <Card
@@ -35,7 +37,10 @@ const Main = () => {
             path={elem.path}
             />)}
         </div>
-    </main>
+    </main>}
+    {!token && <main className='main_container'>
+        <h2>Работа с  журналами доступна после авторизации</h2>
+        </main>}
     </>
 }
 

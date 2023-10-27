@@ -11,6 +11,7 @@
     text-transform: uppercase;
     font-weight: 800;
     margin: 30px;
+    text-align: center;
 }
 .cards_container{
     display: flex;

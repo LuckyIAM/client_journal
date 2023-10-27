@@ -31,7 +31,7 @@ const FindContainer = () => {
         console.log(journalName, year);
         console.log(token);
         localStorage.setItem('name_journal', journalName)
-        {api.find({'data_search': journalName, year: year})
+        if((journalName && year && numberEdition) || (journalName && year && !numberEdition) ||(journalName && !year && !numberEdition)){api.find({'data_search': journalName})
             .then(res => res.json())
             .then(dt => {
                 let data = dt
@@ -40,9 +40,7 @@ const FindContainer = () => {
                 if(journalName && !year && !numberEdition){
                     localStorage.setItem('find_journal', JSON.stringify(data))
                     setFindJournal(data)
-                }
-
-                if(journalName && year && !numberEdition){
+                }else if(journalName && year && !numberEdition){
                     let f = data ? 
                     data.map((elem) => {
                         if(elem.name_journal.includes(year)){
@@ -53,9 +51,7 @@ const FindContainer = () => {
                     console.log(arr);  
                     localStorage.setItem('find_journal', JSON.stringify(arr))
                     setFindJournal(arr)
-                }
-                console.log(numberEdition);
-                if(journalName && year && numberEdition){
+                }else if(journalName && year && numberEdition){
                     console.log('true');
                     localStorage.setItem('find_journal', JSON.stringify(data))
                     let f = data ? 
@@ -73,12 +69,31 @@ const FindContainer = () => {
                     console.log(res);
                     localStorage.setItem('find_journal', JSON.stringify(res))
                     setFindJournal(res)
-                }
-                if(!journalName && year && !numberEdition){
+                }else if(!journalName && year && !numberEdition){
                     localStorage.setItem('find_journal', JSON.stringify(data))
                     setFindJournal(data)
                 }
                 
+                setFindJournal(JSON.parse(localStorage.getItem('find_journal')))                  
+                console.log(findJouranl);
+                setImportANDparse(false)
+                setNameJournal(localStorage.getItem('name_journal'))
+                setJournalName('')
+                setYear(localStorage.setItem('year', year))
+                setNumberEdition('')
+            })
+        }
+        if(!journalName && year && !numberEdition){
+            api.find({'year': year})
+            .then(res => res.json())
+            .then(dt => {
+                let data = dt
+                let arr = []
+                let res = []
+                if(!journalName && year && !numberEdition){
+                    localStorage.setItem('find_journal', JSON.stringify(data))
+                    setFindJournal(data)
+                }
                 setFindJournal(JSON.parse(localStorage.getItem('find_journal')))                  
                 console.log(findJouranl);
                 setImportANDparse(false)
