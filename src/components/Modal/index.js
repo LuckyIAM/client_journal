@@ -122,7 +122,7 @@ const Modal = ({isActive, changeActiv}) => {
                         onChange={e => setMail(e.target.value)}></input>
                     </div>
                     <div className='conteiner_colum'>
-                        <label for='password'>Введите email</label>
+                        <label htmlFor='password'>Введите email</label>
                         <input 
                         id='password'
                         type='password'
@@ -146,7 +146,7 @@ const Modal = ({isActive, changeActiv}) => {
             <div className='popup_reg'>
                 <form  className ='modal_form' onSubmit={handler2}>
                 <div className='conteiner_colum'>
-                        <label for='name'>Введите имя</label>
+                        <label htmlFor='name'>Введите имя</label>
                         <input 
                         id='name'
                         type='text'
@@ -155,7 +155,7 @@ const Modal = ({isActive, changeActiv}) => {
                         onChange={e => setNameReg(e.target.value)}></input>
                     </div>
                 <div className='conteiner_colum'>
-                        <label for='mail'>Введите email</label>
+                        <label htmlFor='mail'>Введите email</label>
                         <input 
                         id='mail'
                         type='email'
@@ -165,14 +165,14 @@ const Modal = ({isActive, changeActiv}) => {
                     </div>
                     
                     <div className='conteiner_colum'>
-                        <label for='password'>Введите пароль</label>
+                        <label htmlFor='password'>Введите пароль</label>
                         <input 
                         type='password'
                         value={psw}
                         onChange={e => setPsw(e.target.value)}></input>
                     </div>
                     <div className='conteiner_colum'>
-                        <label for='role'>Введите роль</label>
+                        <label htmlFor='role'>Введите роль</label>
                         <input 
                         id='role'
                         type='text'

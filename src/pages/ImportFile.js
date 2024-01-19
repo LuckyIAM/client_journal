@@ -14,7 +14,7 @@ const ImportFile = () => {
     <main className="import_data__container">
         <Banner/>
         <UploadContainer/>
-        <div className="toppadiing" style={{position: 'relative', top: '129px'}}>
+        <div className="toppadiing" style={{position: 'relative', top: '100px'}}>
         <Footer/>
         </div>
         

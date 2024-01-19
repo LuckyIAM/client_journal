@@ -1,23 +1,16 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, {useContext} from "react";
 import { Context } from "../../App";
 import { useNavigate } from "react-router-dom";
 import './style.css'
-import BoxInfo from "../BoxInfo";
 
 const JournalCard = ({box_num, quantity, name_journal, id}) => {
     const goTo = useNavigate()
-    const {api, setBoxId, infoBox, setInfoBox, nameJournal, year, setYear, setText, text} = useContext(Context)
+    const {api, setBoxId, setInfoBox, nameJournal, year, setText} = useContext(Context)
   
-    useEffect(() => {
-        setInfoBox(JSON.parse(localStorage.getItem('info_box')))
-        setYear(localStorage.getItem('year'))
-    },[])
 
-    
 
     const getElement = e => {
         e.preventDefault()
-        console.log(e.currentTarget.dataset.id); 
         localStorage.setItem('box_id', e.currentTarget.dataset.id)
         setBoxId(e.currentTarget.dataset.id)
 
@@ -25,29 +18,29 @@ const JournalCard = ({box_num, quantity, name_journal, id}) => {
             .then(res => res.json())
             .then(result => {
                 let data = result
-                console.log('data', data);
                 localStorage.setItem('info_box', JSON.stringify(data))
                 setInfoBox(data)
-                console.log(infoBox, '\n', nameJournal)
-                let reg = '' 
-                for(let i = 0; i < nameJournal.length; i++){
-                    reg = reg + `[${nameJournal[i].toLowerCase()}${nameJournal[i].toUpperCase()}]{1,1}`
-                }
-                console.log(reg);
                 let changeData = ''
-                let regName = new RegExp(reg, 'g')
-                let regYear = new RegExp(year, "g")
-                if(nameJournal && changeData === ''){
-                    changeData = data.name_journal.replace(regName, `<span class="biger">${nameJournal}</span>`)
-                }
-                if(changeData && year){
-                    changeData = changeData.replace(regYear, `<span class="biger">${year}</span>`)
-                }
-                if(changeData === '' && year){
-                    changeData = data.name_journal.replace(regYear, `<span class="biger">${year}</span>`)
-                }
-                console.log(year, changeData);
-                setText(changeData)
+                if(nameJournal){
+                    let reg = '' 
+                    for(let i = 0; i < nameJournal.length; i++){
+                        reg = reg + `[${nameJournal[i].toLowerCase()}${nameJournal[i].toUpperCase()}]{1,1}`
+                    }
+                    let regName = new RegExp(reg, 'g')
+                    let regYear = new RegExp(year, "g")
+                    if(nameJournal && changeData === ''){
+                        changeData = data.name_journal.replace(regName, `<span class="biger">${nameJournal}</span>`)
+                    }
+                    if(changeData && year){
+                        changeData = changeData.replace(regYear, `<span class="biger">${year}</span>`)
+                    }
+                    if(changeData === '' && year){
+                        changeData = data.name_journal.replace(regYear, `<span class="biger">${year}</span>`)
+                    }
+                    setText(changeData)
+                }else{
+                    setText(data.name_journal)
+                }         
             })
         goTo(`/box/${e.currentTarget.dataset.id}`)
     }

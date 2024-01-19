@@ -58,13 +58,3 @@
     margin: 0 20px;
 }
 
-@media (max-width: 485px) {
-    .menu_title{
-        font-weight: 700;
-        font-size: 10px;
-    }
-    .log_in, .log_out, .avatar, .search{
-        width: 30px;
-        height: 30px; 
-    }
-}

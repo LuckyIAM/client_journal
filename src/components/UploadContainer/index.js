@@ -6,10 +6,9 @@ import './style.css'
 
 
 const UploadContainer = () => {
-    const {api, token, importANDparse, setImportANDparse} = useContext(Context)
+    const {api, setImportANDparse} = useContext(Context)
     const [selectedFile, setSelectedFile] = useState(null)
     const [nameFile, setNameFile] = useState('')
-    const [valueName, setValueName] = useState('')
     const [flag, setFlag] = useState(false)
     const navigate = useNavigate()
 
@@ -35,9 +34,7 @@ const UploadContainer = () => {
             .then(res => res.json())
             .then(data => {
                 dataFromDB = data
-                console.log(dataFromDB);
                 let imported = document.querySelector('.request_text')
-                console.log(imported);
                 imported.innerHTML = `Файл <b>${dataFromDB.file_name}</b> загружен и импортирован!<br/>`
                 setSelectedFile('')
                 setNameFile('')
@@ -45,7 +42,6 @@ const UploadContainer = () => {
                 api.parsing({'file_meta': dataFromDB.file_name})
                 .then(res => res.json())
                 .then(data => {
-                    console.log(data)
                     setImportANDparse(false)
                     setFlag(true)
                 })
@@ -59,8 +55,6 @@ const UploadContainer = () => {
     const handlerFile = e => {
         e.preventDefault()
         setSelectedFile(e.target.files[0])
-        setValueName(e.target.files[0].name)
-        console.log(selectedFile);
     }
 
     const flagName = e =>{
@@ -70,15 +64,17 @@ const UploadContainer = () => {
     return<>
     <main>
         <div className="box_main__upload">
-            <div className="instruction2">
-                <h2 className='title2__instruction'>Приготовьте Файл к Загрузке</h2>
+            <div className="instruction">
+                <h2 className='title2_instruction'>Приготовьте Файл к Загрузке</h2>
                 <div className='instruction'>
-                    <div className='start__instruction'>Для этого необходимо:</div>
+                    <details  className="acordion">
+                    <summary>Инструкция</summary> 
                     <ul>
                         <li>Файл имеет формат .csv;</li>
                         <li>Убедитесь в том что кодировка символов utf-8 и при открытье файл читаемый;</li>
                         <li>Имя файла уникальна.</li>
                     </ul>
+                    </details>
                 </div>
             </div>
             <div className="container__upload">

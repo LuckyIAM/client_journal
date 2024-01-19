@@ -69,6 +69,16 @@ class Api{
             }
         })
     }
+    getDataFromNumberBox(body){
+        return fetch(`${this.path}/api/v1/idbox`, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${this.token}`
+            },
+            body: JSON.stringify(body)
+        })
+    }
 }
 
 export default Api;

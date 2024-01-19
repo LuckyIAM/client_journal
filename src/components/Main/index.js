@@ -23,7 +23,7 @@ const objData = [
 
 const Main = () => {
     const {token} = useContext(Context)
-
+    
     return<>
     {token && <main className='main_container'>
         <h2>Работа с  журналами</h2>

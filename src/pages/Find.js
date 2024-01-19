@@ -10,9 +10,7 @@ const Find = () => {
     <Menu/>
     <Banner/>
     <FindContainer/>
-    <div className="toppadiing" style={{position: 'relative', top: '230px'}}>
-        <Footer/>
-    </div>
+    <Footer/>
     </>
 }
 

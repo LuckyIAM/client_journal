@@ -1,10 +1,9 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, {useContext} from "react";
 import {Context} from "../../App"
 import './style.css'
 
 const BoxInfo = () =>{
     const {infoBox, text} = useContext(Context)
-    // const root = document.querySelector('#root')
     let saveText =text
     function createMarkup() {
         return {__html: saveText};

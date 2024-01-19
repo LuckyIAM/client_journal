@@ -1,31 +1,25 @@
-import React, {useState, useContext, useEffect} from 'react'
+import React, {useContext} from 'react'
 import {Context} from "../../App"
-
 import './style.css'
 
 
-
 const Cards = ({icon, name, text, link, path}) =>{
-const [role, setRole] = useState(localStorage.getItem('role') ? localStorage.getItem('role') : '')
-const {token} = useContext(Context)
+const {roleSave, token} = useContext(Context)
 
-    useEffect(() => {
-        const alert = document.querySelector('.alert')
-        console.log(alert);
-    }, [])
-
-    // console.log(role);
     const cardIcon={
         backgroundImage: `url(${icon})`, 
         backgroundColor: "#fff",
         backgroundSize: 'cover',
         backgroundrepeat: 'no-repeat',
-        width: '100px',
-        height: '100px',
+        width: window.innerWidth > 800 ? '200px' : '150px',
+        height: window.innerWidth > 800 ? '200px' : '150px',
         border: '1px solid #fff',
-        borderRadius: '50px',
-        margin: '30px',
+        margin: '30px 30px 30px 50px',
         boxSizing: 'border-box',
+    }
+
+    const cardBoxWidth = {
+        width: `100%`
     }
 
     const navigateToPage = e => {
@@ -35,20 +29,22 @@ const {token} = useContext(Context)
 
 
     return<>
-        {token &&<>
-            {role != 'ADMIN' && name == 'Пойск данных' && <div className='card_box' data-path={path} onClick={navigateToPage}>
-                <div className='card__icon' style={cardIcon}>
+        {token && <>
+            {roleSave !== 'ADMIN' && name === 'Пойск данных' && <div className='card_box'  style={cardBoxWidth} data-path={path} onClick={navigateToPage}>
+                <div className='card__icon' style={cardIcon}></div>
+                <div className='container_textcard'>
+                    <div className='card_name'>{name}</div>
+                    <div className='text_card'>{text}</div>
+                    <div className='link'>{link}</div>
                 </div>
-                <div className='card_name'>{name}</div>
-                <div className='text_card'>{text}</div>
-                <div className='link'>{link}</div>
             </div>}
-            {role == 'ADMIN' && <div className='card_box' data-path={path} onClick={navigateToPage}>
-                <div className='card__icon' style={cardIcon}>
+            {roleSave === 'ADMIN' && <div className='card_box' style={cardBoxWidth} data-path={path} onClick={navigateToPage}>
+                <div className='card__icon' style={cardIcon}></div>
+                <div className='container_textcard'>
+                    <div className='card_name'>{name}</div>
+                    <div className='text_card'>{text}</div>
+                    <div className='link'>{link}</div>
                 </div>
-                <div className='card_name'>{name}</div>
-                <div className='text_card'>{text}</div>
-                <div className='link'>{link}</div>
             </div>}
         </>
         } 

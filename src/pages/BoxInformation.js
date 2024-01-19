@@ -11,7 +11,7 @@ const BoxInformation = () => {
     <Menu/>
     <Banner/>
     <BoxInfo/>
-    <div className="toppadiing" style={{position: 'relative', top: '250px'}}>
+    <div className="toppadiing" style={{position: 'relative', top: '50px'}}>
         <Footer/>
     </div>
     </>

@@ -1,15 +1,19 @@
 .box_main__upload{
-    height: 1000px;
     background-color: #f4dfc5;
     position: relative;
-    top: 350px;
-    padding: 30px 15%;
+    top: 100px;
+    padding: 30px 8% 30px 8%;
 }
 .instruction{
-    padding: 30px 0;
+    padding: 10px 0;
 }
-.title2__instruction{
-    font-size: 60px;
+.acordion{
+    color: #332e29;
+    font-size: 25px;
+    font-weight: 700;
+}
+.title2_instruction{
+    font-size: 35px;
     font-weight: 800;
     text-align: center;
 }
@@ -35,7 +39,7 @@ ul{
 }
 .colum{
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     flex-direction: column;
     padding: 10px 0;
     color: #332e29;
@@ -115,19 +119,3 @@ ul{
     box-sizing: border-box;
 }
 
-@media (max-width: 1099px) { 
- 
-    .title2__instruction{
-        font-size: 35px;
-        font-weight: 800;
-        text-align: center;
-        padding-top: 50px;
-    }
-
- }
-
- @media (max-width: 720px) {
-    ul{
-        line-height: 25px;
-    }
-}
