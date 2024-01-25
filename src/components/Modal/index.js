@@ -122,7 +122,7 @@ const Modal = ({isActive, changeActiv}) => {
                         onChange={e => setMail(e.target.value)}></input>
                     </div>
                     <div className='conteiner_colum'>
-                        <label htmlFor='password'>Введите email</label>
+                        <label htmlFor='password'>Введите пароль</label>
                         <input 
                         id='password'
                         type='password'

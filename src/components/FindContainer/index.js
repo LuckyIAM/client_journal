@@ -28,7 +28,7 @@ const FindContainer = () => {
             setColumns(`1fr`)
             setGap(`50px 130px`)
         }
-        setX(cardResult.current.getBoundingClientRect().x)
+        setX(cardResult.current.getBoundingClientRect().x )
         setY(cardResult.current.getBoundingClientRect().y)
     }, [findJouranl])
     

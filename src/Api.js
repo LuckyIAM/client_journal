@@ -1,7 +1,7 @@
 
 class Api{
     constructor(tkn){
-        this.path = 'http://localhost:5000';
+        this.path = 'http://192.168.1.238:5000';
         this.token = tkn;
     }
 

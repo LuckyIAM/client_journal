@@ -27,7 +27,7 @@ const Menu = () =>{
             localStorage.removeItem(applications[i])
         }
         setToken('')
-        window.location.reload()
+        toMain('/')
        
     }
     const goFind = e => {
